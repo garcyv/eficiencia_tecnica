@@ -1,0 +1,267 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+<Worksheet ss:Name="Diccionario">
+    <Table>
+        <Row>
+            <Cell><Data ss:Type="String">Codigo</Data></Cell>
+            <Cell><Data ss:Type="String">Dato</Data></Cell>
+            <Cell><Data ss:Type="String">Descripcion</Data></Cell>
+            <Cell><Data ss:Type="String">Objetivo</Data></Cell>
+            <Cell><Data ss:Type="String">Unidad de medida</Data></Cell>
+            <Cell><Data ss:Type="String">Rango</Data></Cell>
+            <Cell><Data ss:Type="String">Formula</Data></Cell>
+            <Cell><Data ss:Type="String">Nueva Formula</Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">IADM79</Data></Cell>
+            <Cell><Data ss:Type="String">Gasto Personal a Contrata (cuenta presupuestaria 215.21.02)</Data></Cell>
+            <Cell><Data ss:Type="String">Gasto en Personal a Contrata. Los cargos a Contrata en su conjunto no podrán representar un gasto superior al 20% del gasto de remuneraciones de la planta municipal. art. 2, inciso cuarto, Ley 18883.-</Data></Cell>
+            <Cell><Data ss:Type="String">215.21.02</Data></Cell>
+            <Cell><Data ss:Type="String">M$ MILES DE PESOS</Data></Cell>
+            <Cell><Data ss:Type="String">&quot;0,infinito&quot;</Data></Cell>
+            <Cell><Data ss:Type="String">121.21.03.002.002 + 121.21.06.003.000 + 121.21.06.004.000 + 121.21.08.002.000 + 121.21.09.002.000 + 121.21.12.002.000 + 121.21.13.002.000 + 121.21.13.005.000 + 121.21.13.008.000 + 121.21.15.000.000 + 121.21.16.000.000</Data></Cell>
+            <Cell><Data ss:Type="String">215.21.02.000.000.000</Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">IADM78</Data></Cell>
+            <Cell><Data ss:Type="String">Gasto Personal Planta (cuenta presupuestaria 215.21.01)</Data></Cell>
+            <Cell><Data ss:Type="String">Gasto en Personal de Planta.  El Gasto anual máximo en personal, no podrá exceder del 35% del rendimiento estimado de los ingresos señalados en el art. 1 de la Ley 18.294</Data></Cell>
+            <Cell><Data ss:Type="String">215.21.01</Data></Cell>
+            <Cell><Data ss:Type="String">M$ MILES DE PESOS</Data></Cell>
+            <Cell><Data ss:Type="String">&quot;0,infinito&quot;</Data></Cell>
+            <Cell><Data ss:Type="String">121.21.01.000.000 + 121.21.02.000.000 + 121.21.03.002.001 + 121.21.06.001.000 + 121.21.06.002.000 + 121.21.08.001.000 + 121.21.09.001.000 + 121.21.12.001.000 + 121.21.13.001.000 + 121.21.13.004.000 + 121.21.13.007.000</Data></Cell>
+            <Cell><Data ss:Type="String">215.21.01.000.000.000</Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">IADM111</Data></Cell>
+            <Cell><Data ss:Type="String">Gasto Personal por Prestaciones de Servicios en Programas Comunitarios (cuenta presupuestaria 215.21.04.004)</Data></Cell>
+            <Cell><Data ss:Type="String">Prestaciones de Servicios en Programas Comunitarios 215.21.04.004.-</Data></Cell>
+            <Cell><Data ss:Type="String">Gasto en Personal contratado a Honorarios, para prestaciones de servicios en Programas Comunitarios. Indicador creado en el año 2008, por cambio del Clasificador Presupuestario.</Data></Cell>
+            <Cell><Data ss:Type="String">M$ MILES DE PESOS</Data></Cell>
+            <Cell><Data ss:Type="String">&quot;0,infinito&quot;</Data></Cell>
+            <Cell><Data ss:Type="String">No Aplica</Data></Cell>
+            <Cell><Data ss:Type="String">215.21.04.004.000.000</Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">IADM85</Data></Cell>
+            <Cell><Data ss:Type="String">Gastos en Bienes y Servicios de Consumo (Subtítulo 22)</Data></Cell>
+            <Cell><Data ss:Type="String">Este indicador incluye: gastos de consumo interno y servicios hacia la comunidad como alumbrado público, servicios de aseo entre otros. Esta información está disponible desde el año 2008 (a partir del nuevo clasificador presupuestario).</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+            <Cell><Data ss:Type="String">M$ MILES DE PESOS</Data></Cell>
+            <Cell><Data ss:Type="String">&quot;0,infinito&quot;</Data></Cell>
+            <Cell><Data ss:Type="String">121.22.00.000.000</Data></Cell>
+            <Cell><Data ss:Type="String">215.22.00.000.000.000</Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">IADM76</Data></Cell>
+            <Cell><Data ss:Type="String">Transferencias a Educación</Data></Cell>
+            <Cell><Data ss:Type="String">Transferencias del Municipio al Sector Educación.</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+            <Cell><Data ss:Type="String">M$ MILES DE PESOS</Data></Cell>
+            <Cell><Data ss:Type="String">&quot;0,infinito&quot;</Data></Cell>
+            <Cell><Data ss:Type="String">121.25.31.003.000 + 121.25.33.001.000</Data></Cell>
+            <Cell><Data ss:Type="String">215.24.01.002.000.000 + 215.24.03.101.001.000</Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">IADM77</Data></Cell>
+            <Cell><Data ss:Type="String">Transferencias a Salud (incluye Aporte MINSAL)</Data></Cell>
+            <Cell><Data ss:Type="String">Transferencias Municipales al Sector Salud (incluye Aporte MINSAL)</Data></Cell>
+            <Cell><Data ss:Type="String">En estas transferencias se incluyen los aportes municipales y del MINSAL.</Data></Cell>
+            <Cell><Data ss:Type="String">M$ MILES DE PESOS</Data></Cell>
+            <Cell><Data ss:Type="String">&quot;0,infinito&quot;</Data></Cell>
+            <Cell><Data ss:Type="String">121.25.31.004.000 + 121.25.33.002.000</Data></Cell>
+            <Cell><Data ss:Type="String">215.24.01.003.000.000 + 215.24.03.101.002.000</Data></Cell>
+        </Row>
+    </Table>
+</Worksheet>
+<Worksheet ss:Name="Datos de Formula">
+    <Table>
+        <Row>
+            <Cell><Data ss:Type="String">Codigo</Data></Cell>
+            <Cell><Data ss:Type="String">Dato</Data></Cell>
+            <Cell><Data ss:Type="String">Fuente</Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.06.003.000</Data></Cell>
+            <Cell><Data ss:Type="String">A SERVICIO BIENESTAR - PERSONAL A CONTRATA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.13.002.000</Data></Cell>
+            <Cell><Data ss:Type="String">COMPONENTE BASE - PERSONAL CONTRATA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.09.002.000</Data></Cell>
+            <Cell><Data ss:Type="String">COTIZACION - PERSONAL A CONTRATA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.12.002.000</Data></Cell>
+            <Cell><Data ss:Type="String">DESEMPEÑO INSTITUCIONAL - PERSONAL CONTRATA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.08.002.000</Data></Cell>
+            <Cell><Data ss:Type="String">ESTIMULO - PERSONAL CONTRATA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.13.008.000</Data></Cell>
+            <Cell><Data ss:Type="String">INCREMENTO DESEMPEÑO INDIVIDUAL - PERS. CONTRATA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.13.005.000</Data></Cell>
+            <Cell><Data ss:Type="String">INCREMENTO DESEMPEÑO INSTITUCIONAL - PERS. CONTRATA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.06.004.000</Data></Cell>
+            <Cell><Data ss:Type="String">OTRAS COTIZACIONES PREVISIONALES - PERSONAL A CONTRATA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.15.000.000</Data></Cell>
+            <Cell><Data ss:Type="String">PERSONAL A CONTRATA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.16.000.000</Data></Cell>
+            <Cell><Data ss:Type="String">SOBRESUELDOS PERSONAL A CONTRATA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.03.002.002</Data></Cell>
+            <Cell><Data ss:Type="String">TRAB.EXTRAORDINARIOS PERS.CONTRATA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">215.21.02.000.000.000</Data></Cell>
+            <Cell><Data ss:Type="String">PERSONAL A CONTRATA</Data></Cell>
+            <Cell><Data ss:Type="String">BEP Municipal</Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.06.001.000</Data></Cell>
+            <Cell><Data ss:Type="String">A SERVICIO BIENESTAR - PERSONAL DE PLANTA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.13.001.000</Data></Cell>
+            <Cell><Data ss:Type="String">COMPONENTE BASE - PERSONAL PLANTA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.09.001.000</Data></Cell>
+            <Cell><Data ss:Type="String">COTIZACION - PERSONAL DE PLANTA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.12.001.000</Data></Cell>
+            <Cell><Data ss:Type="String">DESEMPEÑO INSTITUCIONAL - PERSONAL PLANTA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.08.001.000</Data></Cell>
+            <Cell><Data ss:Type="String">ESTIMULO - PERSONAL PLANTA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.13.007.000</Data></Cell>
+            <Cell><Data ss:Type="String">INCREMENTO DESEMPEÑO INDIVIDUAL - PERS. PLANTA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.13.004.000</Data></Cell>
+            <Cell><Data ss:Type="String">INCREMENTO DESEMPEÑO INSTITUCIONAL - PERS. PLANTA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.06.002.000</Data></Cell>
+            <Cell><Data ss:Type="String">OTRAS COTIZACIONES PREVISIONALES - PERSONAL DE PLANTA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.01.000.000</Data></Cell>
+            <Cell><Data ss:Type="String">PERSONAL DE PLANTA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.02.000.000</Data></Cell>
+            <Cell><Data ss:Type="String">SOBRESUELDO PERSONAL DE PLANTA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.21.03.002.001</Data></Cell>
+            <Cell><Data ss:Type="String">TRAB.EXTRAORDINARIOS PERS.PLANTA</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">215.21.01.000.000.000</Data></Cell>
+            <Cell><Data ss:Type="String">PERSONAL DE PLANTA</Data></Cell>
+            <Cell><Data ss:Type="String">BEP Municipal</Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">111.01.02.000.000</Data></Cell>
+            <Cell><Data ss:Type="String">RENTA DE INVERSIONES</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">215.21.04.004.000.000</Data></Cell>
+            <Cell><Data ss:Type="String">Prestaciones de Servicios en Programas Comunitarios</Data></Cell>
+            <Cell><Data ss:Type="String">BEP Municipal</Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.22.00.000.000</Data></Cell>
+            <Cell><Data ss:Type="String">BIENES Y SERVICIOS DE CONSUMO</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">215.22.00.000.000.000</Data></Cell>
+            <Cell><Data ss:Type="String">BIENES Y SERVICIOS DE CONSUMO</Data></Cell>
+            <Cell><Data ss:Type="String">BEP Municipal</Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.25.33.001.000</Data></Cell>
+            <Cell><Data ss:Type="String">EDUCACION A SERVICIOS INCORPORADOS A SU GESTION</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.25.31.003.000</Data></Cell>
+            <Cell><Data ss:Type="String">EDUC. PERS. JURID. DERECH. PRIV. ART. 13 DFL 1-3063</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">215.24.03.101.001.000</Data></Cell>
+            <Cell><Data ss:Type="String">A Educación</Data></Cell>
+            <Cell><Data ss:Type="String">BEP Municipal</Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">215.24.01.002.000.000</Data></Cell>
+            <Cell><Data ss:Type="String">Educación - Pers. Jurídicas Priv. Art. 13 D.F.L. Nº 1, 3063/80</Data></Cell>
+            <Cell><Data ss:Type="String">BEP Municipal</Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.25.33.002.000</Data></Cell>
+            <Cell><Data ss:Type="String">SALUD A SERVICIOS INCORPORADOS A SU GESTION</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">121.25.31.004.000</Data></Cell>
+            <Cell><Data ss:Type="String">SALUD PERS. JURID. DERECH. PRIV. ART. 13 DFL 1-3063</Data></Cell>
+            <Cell><Data ss:Type="String"></Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">215.24.03.101.002.000</Data></Cell>
+            <Cell><Data ss:Type="String">A Salud</Data></Cell>
+            <Cell><Data ss:Type="String">BEP Municipal</Data></Cell>
+        </Row>
+        <Row>
+            <Cell><Data ss:Type="String">215.24.01.003.000.000</Data></Cell>
+            <Cell><Data ss:Type="String">Salud - Pers. Jurídicas Priv.  Art. 13 D.F.L. Nº 1, 3063/80</Data></Cell>
+            <Cell><Data ss:Type="String">BEP Municipal</Data></Cell>
+        </Row>
+    </Table>
+</Worksheet>
+</Workbook>

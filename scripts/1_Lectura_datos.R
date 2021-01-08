@@ -6,7 +6,7 @@ library(sqldf)
 
 setwd("C:/Github_Rstudio_projects/eficiencia_tecnica/scripts")
 
-
+# Carga datos poblacion
 datapob <- read.csv2("../data/ine_estimaciones-y-proyecciones.csv",sep=",",dec=".",header=TRUE)
 # renombra campos para sqldf
 datapob <- datapob %>% 
@@ -22,35 +22,34 @@ data_p14 <-sqldf("SELECT id_region, Region, id_provincia, Provincia,id_comuna, C
                 WHERE id_region = 14 
                 group by id_region, Region, id_provincia, Provincia,id_comuna, Comuna ")
 
-# DATOS EDUCACION MUNICIPALES http://datos.sinim.gov.cl/datos_municipales.php
-dataedu <- read_excel("../data/datos_municipales_con_Corrección_Monetaria_E2019.xlsx")
-data_e14 <- sqldf("SELECT id_comuna, `IPEEC (N°)`as Ingreso FROM dataedu WHERE region = '14' ")
 
 # DATOS FINANCIEROS MUNICIPALES http://datos.sinim.gov.cl/datos_municipales.php
 
 datafin <- read_excel("../data/datos_municipales_con_Corrección_Monetaria_F2019.xlsx")
-data_f14 <-  sqldf("SELECT id_comuna,provincia,codigo,municipio, BPIIM, BPVGM FROM datafin WHERE region = '14' ")
+data_f14 <-  sqldf("SELECT id_comuna,
+                           IADM85  as G_Bienes_Serv,
+                           IADM79  as G_Personal_Contrata,
+                           IADM78  as G_Personal_Planta,
+                           IADM111 as G_Comunitarios ,
+                           IADM76  as G_Transf_Educ,
+                           IADM77  as G_Transf_Salud 
+                    FROM datafin 
+                   WHERE region = '14' ")
 
-# DATOS areas verdes  MUNICIPALES http://datos.sinim.gov.cl/datos_municipales.php
-dataave <- read_excel("../data/datos_municipales_AV.xlsx")
-dataave <- dataave %>% 
-  mutate(m2_hab = ifelse(m2_hab == "No Recepcionado", "0", m2_hab))
-dataave$m2_hab <- as.numeric(dataave$m2_hab)
-data_a14 <- sqldf("SELECT CODIGO as 'id_comuna' , m2_hab FROM dataave")
 
 # Indice de desarrollo comunal
 data_idc <- read_excel("../data/IDC.xlsx")
 
 # Genera tabla unica por medio de join entre tablas datos población y datos financieros
 data_comunas <- sqldf("SELECT data_p14.*, 
-                              data_f14.BPIIM/data_p14.pob2019 as BPIIM, 
-                              data_f14.BPVGM/data_p14.pob2019 as BPVGM
+                           data_f14.G_Bienes_Serv/data_p14.pob2019       G_Bienes_Serv,
+                           data_f14.G_Personal_Contrata/data_p14.pob2019 G_Personal_Contrata,
+                           data_f14.G_Personal_Planta/data_p14.pob2019   G_Personal_Planta,
+                           data_f14.G_Comunitarios/data_p14.pob2019      G_Comunitarios,
+                           data_f14.G_Transf_Educ/data_p14.pob2019       G_Transf_Educ,
+                           data_f14.G_Transf_Salud/data_p14.pob2019      G_Transf_Salud
                          FROM data_p14 , data_f14 
-                         WHERE data_p14.id_comuna = data_f14.codigo")
-# Añade datos educación
-data_comunas <- sqldf("SELECT data_comunas.*, data_e14.Ingreso /data_comunas.pob2019 Ingreso
-                         FROM data_comunas , data_e14 
-                         WHERE data_comunas.id_comuna = data_e14.id_comuna")
+                         WHERE data_p14.id_comuna = data_f14.id_comuna")
 
 # añade datos indicadores de desarrollo comunal
 data_comunas <- sqldf("SELECT data_comunas.*, 
@@ -61,21 +60,43 @@ data_comunas <- sqldf("SELECT data_comunas.*,
                       FROM data_comunas , data_idc 
                       WHERE data_comunas.id_comuna = data_idc.id_comuna")
 
-# añade datos areas verdes
-data_comunas <- sqldf("SELECT data_comunas.*, data_a14.m2_hab 
-                         FROM data_comunas , data_a14 
-                         where data_comunas.id_comuna = data_a14.codigo")
+# Genera data con resumen de columnas gasto personal y renombra inputs, y outputs
+data <- sqldf("SELECT data_comunas.id_comuna, 
+                      data_comunas.Comuna            as  DMU,
+                      data_comunas.G_Bienes_Serv     as   I_GBienesServicios,
+                      data_comunas.G_Personal_Contrata + 
+                      data_comunas.G_Personal_Planta as   I_GPersonal,
+                      data_comunas. G_Comunitarios   as   I_GComunitarios, 
+                      data_comunas.G_Transf_Educ     as   I_GEducacion ,
+                      data_comunas.G_Transf_Salud    as   I_GSalud,
+                      data_comunas.idc_bienestar     as   O_idc_bienestar, 
+                      data_comunas.idc_bienestar     as   O_idc_economia, 
+                      data_comunas.idc_educacion     as   O_idc_educacion, 
+                      data_comunas.idc_idc           as   O_idc_idc 
+                      FROM data_comunas ")
 
-# Prepara data y genera modelo
-data <- read_data(data_comunas,dmus=4, inputs=5:7, outputs=8:11) 
-result <- model_basic(data,  
+# Prepara data y genera modelo orientado al ouput
+data.model <- read_data(data,dmus=2, inputs=3:7, outputs=8:11) 
+result <- model_basic(data.model,  
                       dmu_ref=1:12, 
                       dmu_eval=1:12, 
-                      orientation='io', 
+                      orientation='oo', 
                       rts='crs')
 
 # añade datos indicador de eficiencia
 data_comunas$ef<-efficiencies(result) 
+efficiencies(result) 
+# Valdivia     Corral  Lanco    Los Lagos     
+# 1.00000     3.49210  1.00000  1.00000    
+
+# Máfil   Mariquina   Paillaco  Panguipulli 
+# 1.25650     1.11310     1.00000     1.54851 
+
+# La Unión     Futrono  Lago Ranco   Río Bueno 
+#  1.05513     1.34416     1.00000     1.00000 
+
+
 plot(result)
+
 
 
