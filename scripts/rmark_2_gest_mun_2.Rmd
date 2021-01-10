@@ -1,0 +1,136 @@
+---
+title: "Untitled"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+
+library(shiny)
+library(dplyr)
+library(plotly)
+library(xlsx)
+library(tidyverse)
+
+library(ggplot2)
+library(gpclib)
+library(rgdal)
+library(sf)
+
+
+
+library(ggrepel)
+library(leaflet)
+```
+```{r data}
+mapa <- read_sf("../data//COVID-19_Chile_Situacion_por_Comunas-shp/COVID-19_Chile_Situacion_por_Comunas.shp")
+mapa <- mapa[mapa$CUT_REG=="14",]
+#Convertimos nuestro archivo de poligono espacial en una tabla
+Chile<-mapa %>% st_as_sf()
+
+comunas_data <- read.xlsx("../data/comunas_los_rios.xlsx","comunas",header=TRUE)
+
+comunas_data$NA.<- NULL
+comunas_sp <- comunas_data %>%
+  st_as_sf(coords=c(1,2),crs="+proj=longlat +datum=WGS84 +no_defs")
+comunas.var = c("comuna")
+
+indicadores.var = c("tasa_activos", "activos")
+
+# The full name of a viridis palette: "viridis", "magma", "inferno", or "plasma".
+palnumeric <- colorNumeric("inferno", domain = mapa$TASA_ACTIV)
+palnumeric2 <- colorNumeric("Spectral", domain = mapa$C_ACT)
+
+palBin <- colorBin("viridis", domain = mapa$TASA_ACTIV, bins = 5)
+palBin2 <- colorBin("inferno", domain = mapa$C_ACTIV, bins = 7)
+
+palQuantile <- colorQuantile("Spectral", domain = mapa$TASA_ACTIV)
+palfac <- colorFactor("RdBu", domain = factor(mapa$COMUNA))
+
+# Funcion hecha en casa para mostrar los decimales que queremos:
+specify_decimal <- function(x, k) trimws(format(round(x, k), nsmall = k))
+
+popup <- paste0("<br>", "<b>", "Poblacion: ", "</b>", mapa$R_POB, "<br>", 
+                "<b>", "Casos Activos: ", "</b>", mapa$C_ACT, "<br>", "<b>", 
+                "tasa activos ", "</b>", specify_decimal(mapa$TASA_ACTIV, 1), "<br>", "<b>", 
+                "Provincia: ", "</b>", mapa$PROVINCIA, "<br>")
+
+
+```
+Column {.sidebar data-width=200}
+-----------------------------------------------------------------------
+
+```{r}
+
+
+selectInput("comunas_variable", label = "Seleccione comuna:", choices = comunas.var)
+
+selectInput("indicadores_variable", label = "Seleccione dato:", choices = indicadores.var)
+
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+output$map <- renderLeaflet({
+  
+ leaflet(mapa)  %>% addTiles() %>%
+  # Funcion para agregar poligonos
+  addPolygons(data =mapa, color = "#444444",
+              weight = 1, smoothFactor = 0.5, 
+              opacity = 1, fillOpacity = 0.5, 
+              fillColor = ~palBin2(mapa$C_ACT), 
+              group = "Activos", highlightOptions = highlightOptions(color = "white", weight = 2, 
+                                                                     bringToFront = TRUE), label = ~mapa$COMUNA, labelOptions = labelOptions(direction = "auto"), 
+              popup = popup)%>% 
+  addLegend(position = "bottomleft", pal = palBin2, values = ~mapa$C_ACT, 
+            title = "Activos") %>% 
+  addPolygons(data =mapa, color = "#444444",
+              weight = 1, smoothFactor = 0.5, 
+              opacity = 1, fillOpacity = 0.5, 
+              fillColor = ~palBin(mapa$TASA_ACTIV), 
+              group = "Tasa", highlightOptions = highlightOptions(color = "white", weight = 2, 
+                                                                  bringToFront = TRUE), label = ~mapa$COMUNA, labelOptions = labelOptions(direction = "auto"), 
+              popup = popup) %>% 
+  addLayersControl(baseGroups = c("Activos", "Tasa")) %>% 
+  addLegend(position = "topright", pal = palBin, values = ~mapa$TASA_ACTIV,
+            title = "Tasa") 
+  
+})
+
+leafletOutput('map')
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+renderPlotly({
+   plot_ly(comunas_data,
+              x = ~comunas_sp[[input$indicadores_variable]],
+              color = ~comunas_sp[[input$comunas_variable]],
+              colors = "Paired",
+              type = "box") %>%
+  layout(title = "",
+         xaxis = list(title = "" ,
+                      zeroline = FALSE))
+})
+```
+
+### Chart C
+
+```{r}
+ggplot()+
+  geom_sf(data=Chile)+
+  geom_sf(data = comunas_sp, aes(color= comuna))+
+  theme(legend.position = "none")
+```
+

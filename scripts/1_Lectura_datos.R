@@ -1,10 +1,17 @@
+rm(list=ls())
+setwd("C:/Github_RStudioprojects/eficiencia_tecnica/scripts")
+
+# Paquetes a utlizar
+
 library(readxl)
 library(deaR)
 library(dbplyr)
 library(tidyverse)
 library(sqldf)
+library(dplyr)
 
-setwd("C:/Github_Rstudio_projects/eficiencia_tecnica/scripts")
+#setwd("C:/Github_Rstudio_projects/eficiencia_tecnica/scripts")
+setwd("C:/Github_RStudioprojects/eficiencia_tecnica/scripts")
 
 # Carga datos poblacion
 datapob <- read.csv2("../data/ine_estimaciones-y-proyecciones.csv",sep=",",dec=".",header=TRUE)
@@ -85,6 +92,9 @@ result <- model_basic(data.model,
 
 # añade datos indicador de eficiencia
 data_comunas$ef<-efficiencies(result) 
+
+save(data_comunas,file="../data/data_comunas.RData")
+
 efficiencies(result) 
 # Valdivia     Corral  Lanco    Los Lagos     
 # 1.00000     3.49210  1.00000  1.00000    
@@ -95,8 +105,67 @@ efficiencies(result)
 # La Unión     Futrono  Lago Ranco   Río Bueno 
 #  1.05513     1.34416     1.00000     1.00000 
 
+result2<-cross_efficiency(data.model,
+                 dmu_ref=1:12, 
+                 dmu_eval=1:12, 
+                 epsilon = 0,
+                 orientation = c("io", "oo"),
+                 rts = c("crs", "vrs"),
+                 selfapp = TRUE,
+                 correction = FALSE,
+                 M2 = TRUE,
+                 M3 = TRUE)
 
-plot(result)
+result2
+
+###### DATA PARA VISUALIZACION ESPACIAL
+library(sf)
+
+mapa <- read_sf("../data/COVID19/COVID-19_Chile_Situacion_por_Comunas.shp")
+#mapa$id_comuna <- as.integer(mapa$id_comuna)
+mapa14 <- mapa %>%
+  filter(CUT_REG=="14") %>%
+  dplyr::select(id = OBJECTID,
+                        CUT_REG,REGION,CUT_PROV,PROVINCIA,
+                id_comuna =CUT_COM,
+                         CUT_COM, COMUNA,
+                        poblacion= R_POB, activos=C_ACT, tasa=TASA_ACTIV,
+                        geometry)
+
+  mapa14$id_comuna <- as.integer(mapa14$id_comuna)
+
+str(mapa14)
+
+save(mapa,file="../data/mapa.RData")
+
+comunas <- read_excel("../data/comunas_los_rios.xlsx")
+comunas$NA.<- NULL
+comunas$id <- as.integer(comunas$id)+1
+
+comunas$id_comuna <- as.integer(mapa14$id_comuna)
+
+data_comunas <- sqldf("SELECT data_comunas.*,
+                               comunas.X1 as lon,
+                               comunas.X2 as lat,
+                               comunas.clon, comunas.clat
+                      FROM data_comunas,comunas
+                      WHERE data_comunas.id_comuna= comunas.id_comuna")
+
+data_comunas_sp <- data_comunas %>%
+  st_as_sf(coords=c(19,20),crs="+proj=longlat +datum=WGS84 +no_defs")
+
+mapa14<-left_join(data_comunas, mapa14, by = 'id_comuna')
+
+library(tibble)
+mapa14 <- mapa14 %>% 
+          as_tibble() %>%  
+          st_as_sf()
+
+save(mapa14,file="../data/mapa14.RData")
 
 
+save(data_comunas,file="../data/data_comunas.RData")
+save(data_comunas_sp,file="../data/comunas_sp.RData")
+#rm(comunas_data)
+#rm(comunas_sp)
 
